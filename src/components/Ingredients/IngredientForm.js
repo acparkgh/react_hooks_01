@@ -25,7 +25,7 @@ const IngredientForm = React.memo(props => {
                      const newTitle = event.target.value;
                      inputState[1]( (prevInputState) => ({ 
                        title: newTitle,
-                       amount: prevInputState.title                     
+                       amount: prevInputState.amount                     
                      }) )
                    } }
             />
