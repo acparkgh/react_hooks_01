@@ -6,8 +6,10 @@ import './IngredientForm.css';
 const IngredientForm = React.memo(props => {
   
   // const inputState = useState({ title: '', amount: '' });
-  const [ inputState, setInputState ] = useState({ title: '', amount: '' });
-  console.log(inputState);
+  // const [ inputState, setInputState ] = useState({ title: '', amount: '' });
+  const [ enteredTitle, setEnteredTitle ] = useState('');
+  const [ enteredAmount, setEnteredAmount ] = useState('');
+  
   // debugger
   const submitHandler = event => {
     
@@ -23,17 +25,19 @@ const IngredientForm = React.memo(props => {
             <label htmlFor="title">Name</label>
             <input type="text" 
                    id="title" 
-                   value={inputState.title} 
+                  //  value={inputState.title} 
+                   value={enteredTitle} 
                    onChange={ (event) => {
-                     const newTitle = event.target.value;
-                     return ( 
-                       setInputState( (prevInputState) => { 
-                         return ({
-                           title: newTitle,
-                           amount: prevInputState.amount                     
-                         })
-                       } ) 
-                     )  
+                    //  const newTitle = event.target.value;
+                    //  return ( 
+                    //    setInputState( (prevInputState) => { 
+                    //      return ({
+                    //        title: newTitle,
+                    //        amount: prevInputState.amount                     
+                    //      })
+                    //    } ) 
+                    //  )  
+                    setEnteredTitle(event.target.value);
                    } }
             />
           </div>
@@ -41,14 +45,8 @@ const IngredientForm = React.memo(props => {
             <label htmlFor="amount">Amount</label>
             <input type="number" 
                    id="amount" 
-                   value={inputState.amount} 
-                   onChange={ event => {
-                     const newAmount = event.target.value;
-                     setInputState( (prevInputState) => ( { 
-                       amount: newAmount,
-                       title: prevInputState.title 
-                     } ) ) 
-                   } }
+                   value={enteredAmount} 
+                   onChange={ event => setEnteredAmount(event.target.value) }
             />
           </div>
           <div className="ingredient-form__actions">
