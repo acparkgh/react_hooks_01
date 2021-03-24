@@ -4,14 +4,17 @@ import Card from '../UI/Card';
 import './IngredientForm.css';
 
 const IngredientForm = React.memo(props => {
-
-  const inputState = useState({ title: '', amount: '' });
-
+  
+  // const inputState = useState({ title: '', amount: '' });
+  const [ inputState, setInputState ] = useState({ title: '', amount: '' });
+  console.log(inputState);
+  // debugger
   const submitHandler = event => {
+    
     event.preventDefault();
     // ...
   };
-
+  
   return (
     <section className="ingredient-form">
       <Card>
@@ -20,13 +23,17 @@ const IngredientForm = React.memo(props => {
             <label htmlFor="title">Name</label>
             <input type="text" 
                    id="title" 
-                   value={inputState[0].title} 
-                   onChange={ event => {
+                   value={inputState.title} 
+                   onChange={ (event) => {
                      const newTitle = event.target.value;
-                     inputState[1]( (prevInputState) => ({ 
-                       title: newTitle,
-                       amount: prevInputState.amount                     
-                     }) )
+                     return ( 
+                       setInputState( (prevInputState) => { 
+                         return ({
+                           title: newTitle,
+                           amount: prevInputState.amount                     
+                         })
+                       } ) 
+                     )  
                    } }
             />
           </div>
@@ -34,13 +41,13 @@ const IngredientForm = React.memo(props => {
             <label htmlFor="amount">Amount</label>
             <input type="number" 
                    id="amount" 
-                   value={inputState[0].amount} 
+                   value={inputState.amount} 
                    onChange={ event => {
                      const newAmount = event.target.value;
-                     inputState[1]( (prevInputState) => ({ 
+                     setInputState( (prevInputState) => ( { 
                        amount: newAmount,
                        title: prevInputState.title 
-                     }) ) 
+                     } ) ) 
                    } }
             />
           </div>
