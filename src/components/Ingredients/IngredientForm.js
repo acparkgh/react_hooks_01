@@ -6,16 +6,17 @@ import './IngredientForm.css';
 const IngredientForm = React.memo(props => {
   
   // const inputState = useState({ title: '', amount: '' });
+  // debugger
   // const [ inputState, setInputState ] = useState({ title: '', amount: '' });
+
   const [ enteredTitle, setEnteredTitle ] = useState('');
   const [ enteredAmount, setEnteredAmount ] = useState('');
-  
-  // debugger
+
   const submitHandler = event => {
     event.preventDefault();
     props.onAddIngredient({ title: enteredTitle, amount: enteredAmount });
   };
-  
+
   return (
     <section className="ingredient-form">
       <Card>
