@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
+import Counter from './Counter';
 import Search from './Search';
 
 // function Ingredients() {
@@ -46,6 +47,7 @@ const Ingredients = () => {
         <IngredientList ingredients={userIngredients} 
                         onRemoveItem={removeIngredientHandler} 
         />
+        
       </section>
     </div>
   );
