@@ -14,21 +14,24 @@ const Ingredients = () => {
     fetch( 'https://react-hooks-update-a98ff-default-rtdb.firebaseio.com/ingredients.json' )
       .then( response => { return response.json()} )
       .then( responseData => {
-          console.log(responseData)
-          const loadedIngredients = [];
-          for (const key in responseData) {
-            loadedIngredients.push({
+        // console.log(responseData)
+        const loadedIngredients = [];
+        for (const key in responseData) {
+          // debugger
+          loadedIngredients.push({
               id: key,
               title: responseData[key].title,
               amount: responseData[key].amount
             })
           }
-          console.log(loadedIngredients)
+          // console.log(loadedIngredients)
           setUserIngredients( loadedIngredients );
       } )
   }, [] );
 
-  
+  const filteredIngredientsHandler = filteredIngredients => {
+    setUserIngredients(filteredIngredients)
+  }
 
   const addIngredientHandler = ingredient => {
     fetch( 'https://react-hooks-update-a98ff-default-rtdb.firebaseio.com/ingredients.json', {
@@ -63,7 +66,7 @@ const Ingredients = () => {
       <IngredientForm onAddIngredient={addIngredientHandler} />
 
       <section>
-        <Search />
+        <Search onLoadIngredients={filteredIngredientsHandler} />
         <IngredientList ingredients={userIngredients} 
                         onRemoveItem={removeIngredientHandler} 
         />
