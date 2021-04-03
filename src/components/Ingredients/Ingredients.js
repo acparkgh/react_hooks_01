@@ -47,17 +47,13 @@ const Ingredients = () => {
   }
 
   const removeIngredientHandler = ingredientID => {
-    return (
-      setUserIngredients( prevIngredients => {
-        return (
-          prevIngredients.filter( ingredient => { 
-            return (
-              ingredient.id !== ingredientID
-             )
-          } )
-        );
-      } )
-    );
+    fetch( `https://react-hooks-update-a98ff-default-rtdb.firebaseio.com/ingredients/${ingredientID}.json`, {
+      method: 'DELETE',
+    } ).then(response => { 
+      setUserIngredients( prevIngredients =>  
+        prevIngredients.filter( ingredient => ingredient.id !== ingredientID )
+      ) 
+    } );
   };
 
   return (
