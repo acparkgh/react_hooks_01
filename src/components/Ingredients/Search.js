@@ -8,22 +8,22 @@ const Search = React.memo(props => {
   const { onLoadIngredients } = props;
   const [ enteredFilter, setEnteredFilter ] = useState('');
 
-  useEffect( () => {
-    const query = enteredFilter.length === 0 ? '' : `?orderBy="title"&equalTo="${enteredFilter}"`;
-    fetch( 'https://react-hooks-update-a98ff-default-rtdb.firebaseio.com/ingredients.json' + query )
-      .then( response => response.json() )
-      .then( responseData => {
-        const loadedIngredients = [];
-        for (const key in responseData) {
-          loadedIngredients.push({
-            id: key,
-            title: responseData[key].title,
-            amount: responseData[key].amount
-          })
-        }
-        // onLoadIngredients(loadedIngredients);
-      })
-  }, [enteredFilter, onLoadIngredients] );
+  // useEffect( () => {
+  //   const query = enteredFilter.length === 0 ? '' : `?orderBy="title"&equalTo="${enteredFilter}"`;
+  //   fetch( 'https://react-hooks-update-a98ff-default-rtdb.firebaseio.com/ingredients.json' + query )
+  //     .then( response => response.json() )
+  //     .then( responseData => {
+  //       const loadedIngredients = [];
+  //       for (const key in responseData) {
+  //         loadedIngredients.push({
+  //           id: key,
+  //           title: responseData[key].title,
+  //           amount: responseData[key].amount
+  //         })
+  //       }
+  //       onLoadIngredients(loadedIngredients);
+  //     })
+  // }, [enteredFilter, onLoadIngredients] );
 
   return (
     <section className="search">
